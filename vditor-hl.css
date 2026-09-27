@@ -1,0 +1,111 @@
+/* custom-vditor-sv.css */
+
+/* 1. 外层容器 */
+.vditor-sv-container {
+    position: relative;
+    flex: 1 !important;
+    min-width: 0 !important;
+    height: 100% !important; 
+    overflow: hidden;
+    background-color: var(--textarea-background-color, #2f363d) !important;
+    --vditor-text-color: #24292e;
+}
+.vditor--dark .vditor-sv-container {
+    --vditor-text-color: #d1d5da;
+}
+
+/* ==========================================
+   textarea 独立设置
+   ========================================== */
+html body .vditor-sv-container textarea.vditor-sv {
+    /* 基础排版（必须与下方 pre 完全一致） */
+    font-family: monospace, sans-serif !important;
+    font-size: 16px !important;         /* 必须一致 */
+    /*line-height: 22px !important;       /* 必须一致 */
+    font-weight: normal !important;
+    letter-spacing: 0px !important;
+    word-spacing: 0px !important;
+    padding: 10px !important;           /* 必须一致 */
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    tab-size: 4 !important;
+    font-variant-ligatures: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    /*scrollbar-width: none;
+    -ms-overflow-style: none;*/
+
+    /* 专属调试样式（目前你把透明注释了，为了对齐，先保留红色半透明方便调，调完再换回来） */
+    /* color: transparent !important; */
+    color: rgba(255, 255, 255, 0.1) !important; /* 调试用：半透明红字 */
+    -webkit-text-fill-color: initial !important; /* 调试用 */
+    /*background-color: transparent !important;*/
+    caret-color: var(--vditor-text-color) !important;
+    
+    z-index: 999 !important;
+    height: 100% !important;
+    /*overflow: hidden !important; */
+}
+
+/* ==========================================
+   pre 高亮层独立设置
+   ========================================== */
+html body .vditor-sv-highlight {
+    /* 基础排版（必须与上方 textarea 完全一致） */
+    font-family: monospace, sans-serif !important;
+    font-size: 16px !important;         /* 必须一致 */
+    line-height: 22px !important;       /* 必须一致 */
+    font-weight: normal !important;
+    letter-spacing: 0px !important;
+    word-spacing: 0px !important;
+    padding: 10px 10px !important;           /* 必须一致 */
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    tab-size: 4 !important;
+    font-variant-ligatures: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    /*scrollbar-width: none;
+    -ms-overflow-style: none;*/
+
+    /* 专属定位样式 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100% !important;
+    pointer-events: none; 
+    overflow: hidden; 
+    color: var(--vditor-text-color);
+
+    border-right: 1px solid var(--border-color, #d1d5da) !important;
+}
+
+/* 5. 自定义词法颜色 */
+.token-heading { color: #FE7901; }
+.token-bold { color: #B435D9; }
+.token-italic { color: #F4C627; }
+.token-code-block { color: #0453FA; }
+.token-code-inline { color: #0453FA; }
+.token-link { color: #032f62; text-decoration: underline; }
+.token-list { color: #005cc5; }
+.token-quote { color: #3399CC; }
+.token-hr { color: #6a737d; }
+.token-strike { color: #d73a49;}
+
+/* 6. 优化选中文本的样式 */
+body .vditor-sv-container textarea.vditor-sv::selection {
+    background-color: rgba(66, 133, 244, 0.3) !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+}
