@@ -95,9 +95,9 @@ html body .vditor-sv-highlight {
 .token-heading { color: #FE7901; }
 .token-bold { color: #B435D9; }
 .token-italic { color: #F4C627; }
-.token-code-block { color: #0453FA; }
-.token-code-inline { color: #0453FA; }
-.token-link { color: #032f62; text-decoration: underline; }
+.token-code-block { color: #0080FF; }
+.token-code-inline { color: #0080FF; }
+.token-link { color: #2DC62D; text-decoration: underline; }
 .token-list { color: #005cc5; }
 .token-quote { color: #3399CC; }
 .token-hr { color: #6a737d; }

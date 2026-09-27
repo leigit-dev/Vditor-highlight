@@ -3,42 +3,65 @@
     /* ==========================================
        核心：Markdown 文本 → 带颜色的 HTML
        ========================================== */
+    /* ==========================================
+       核心：Markdown 文本 → 带颜色的 HTML
+       ========================================== */
     function highlightMarkdown(text) {
         // 1. 转义 HTML
         let html = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-        // 2. 多行代码块
+        // 2. 先把多行代码块提取出来，用占位符替换
+        //    （\u0000 是控制字符，正常内容里不会出现，用作占位符很安全）
+        const codeBlocks = [];
         html = html.replace(/(```[a-zA-Z]*\n?)([\s\S]*?)(\n?```)/g, function (match, open, codeContent, close) {
-            return open + '<span class="token-code-block">' + codeContent + '</span>' + close;
+            const placeholder = '\u0000CODEBLOCK' + codeBlocks.length + '\u0000';
+            codeBlocks.push({ open: open, content: codeContent, close: close });
+            return placeholder;
         });
 
-        // 3. 标题
+        // 3. 再把行内代码提取出来（防止 `[x](y)` 被误判为链接）
+        const inlineCodes = [];
+        html = html.replace(/(`[^`\n]+`)/g, function (match) {
+            const placeholder = '\u0000INLINECODE' + inlineCodes.length + '\u0000';
+            inlineCodes.push(match);
+            return placeholder;
+        });
+
+        // 4. 标题
         html = html.replace(/^(#{1,6}\s+.*)$/gm, '<span class="token-heading">$1</span>');
 
-        // 4. 删除线
-        html = html.replace(/(~~.*?~~)/g, '<span class="token-strike">$1</span>');
+        // 5. 删除线
+        html = html.replace(/(~~(?!\s).(?!\s)*?~~)/g, '<span class="token-strike">$1</span>');
 
-        // 5. 粗体 / 斜体
-        html = html.replace(/(\*\*.*?\*\*)|(\*.*?\*)/g, function (match, bold, italic) {
+        // 6. 粗体 / 斜体
+        html = html.replace(/(\*\*(?!\s).*?(?<!\s)\*\*)|(\*(?!\s).*?(?<!\s)\*)/g, function (match, bold, italic) {
             if (bold) return '<span class="token-bold">' + bold + '</span>';
             if (italic) return '<span class="token-italic">' + italic + '</span>';
             return match;
         });
 
-        // 6. 链接
+        // 7. 链接（此时 html 里已经没有代码块和行内代码的内容，lambda 不会再被误匹配）
         html = html.replace(/(\[.*?\]\(.*?\))/g, '<span class="token-link">$1</span>');
 
-        // 7. 列表
+        // 8. 列表
         html = html.replace(/^(\s*[-\*\+]\s+|\s*\d+\.\s+)/gm, '<span class="token-list">$1</span>');
 
-        // 8. 引用（修正了 &gt; 的转义问题）
+        // 9. 引用（&gt; 是 > 转义后的样子）
         html = html.replace(/^(&gt;\s+.*)$/gm, '<span class="token-quote">$1</span>');
 
-        // 9. 分割线
+        // 10. 分割线
         html = html.replace(/^(-{3,}|\*{3,}|_{3,})$/gm, '<span class="token-hr">$1</span>');
 
-        // 10. 行内代码
-        html = html.replace(/(`[^`\n]+`)/g, '<span class="token-code-inline">$1</span>');
+        // 11. 还原行内代码
+        html = html.replace(/\u0000INLINECODE(\d+)\u0000/g, function (match, index) {
+            return '<span class="token-code-inline">' + inlineCodes[parseInt(index, 10)] + '</span>';
+        });
+
+        // 12. 还原代码块
+        html = html.replace(/\u0000CODEBLOCK(\d+)\u0000/g, function (match, index) {
+            const block = codeBlocks[parseInt(index, 10)];
+            return block.open + '<span class="token-code-block">' + block.content + '</span>' + block.close;
+        });
 
         return html + '\n';
     }
