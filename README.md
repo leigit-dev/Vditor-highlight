@@ -1,4 +1,4 @@
-# Vditor SV Highlight
+# Vditor SV Highlight（非官方插件）
 
 为旧版 Vditor 的 **SV（分屏预览）模式** 补上 Markdown 语法高亮。
 
@@ -161,7 +161,16 @@ refreshVditorSVHighlight();
 
 ## 版权与致谢
 
-本插件基于 Vditor 构建，遵守 Vditor 的 MIT License，并沿用其原始版权声明：
+本插件（Vditor SV Highlight）为独立实现，不包含 Vditor 源码，仅通过 DOM 层叠加为 Vditor 的 SV 模式提供语法高亮。
+
+- 本插件版权归插件作者所有，采用 MIT License。
+- Vditor 是第三方项目，版权归 B3log 开源（b3log.org），采用 MIT License。
+- Vditor 项目地址：https://github.com/Vanessa219/vditor
+
+本插件为非官方插件，与 Vditor 官方无关联。Vditor 名称及相关权利归其所有者。
+
+### 第三方依赖许可：Vditor
+
 
 ```text
 Vditor - A markdown editor written in TypeScript.
@@ -190,10 +199,8 @@ SOFTWARE.
 
 ```
 
-Vditor 项目地址：https://github.com/Vanessa219/vditor
-
-本插件不包含 Vditor 的任何源码，仅通过 DOM 层叠加实现语法高亮，请遵守 Vditor 的许可证使用本项目。
+使用本插件请遵守本项目的 MIT License；使用 Vditor 请遵守 Vditor 的 MIT License。
 
 ## License
 
-MIT
+本插件采用 MIT License，详见 [LICENSE](./LICENSE)。
