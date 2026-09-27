@@ -159,6 +159,41 @@ refreshVditorSVHighlight();
 6. **其他 Vditor 版本可能需要微调**：本插件仅在 Vditor 4.0.0 上验证。若你使用的是其他版本，请检查开发者工具中 `.vditor-sv` 与 `.vditor-sv-highlight` 的排版参数是否一致，必要时微调 CSS 中的 `padding`、`line-height`、`font-family` 等。
 
 
+## 版权与致谢
+
+本插件基于 Vditor 构建，遵守 Vditor 的 MIT License，并沿用其原始版权声明：
+
+```text
+Vditor - A markdown editor written in TypeScript.
+
+MIT License
+
+Copyright (c) 2019-present B3log 开源, b3log.org
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
+
+Vditor 项目地址：https://github.com/Vanessa219/vditor
+
+本插件不包含 Vditor 的任何源码，仅通过 DOM 层叠加实现语法高亮，请遵守 Vditor 的许可证使用本项目。
+
 ## License
 
 MIT
