@@ -17,9 +17,9 @@
 /* ==========================================
    textarea 独立设置
    ========================================== */
-html body .vditor-sv-container textarea.vditor-sv {
+html body .vditor-sv-container textarea.vditor-sv,textarea.vditor-sv {
     /* 基础排版（必须与下方 pre 完全一致） */
-    font-family: monospace, sans-serif !important;
+    font-family: "Microsoft YaHei","PingFang SC","Noto Sans CJK SC",monospace, sans-serif !important;
     font-size: 16px !important;         /* 必须一致 */
     /*line-height: 22px !important;       /* 必须一致 */
     font-weight: normal !important;
@@ -54,9 +54,9 @@ html body .vditor-sv-container textarea.vditor-sv {
 /* ==========================================
    pre 高亮层独立设置
    ========================================== */
-html body .vditor-sv-highlight {
+.vditor-sv-highlight{
     /* 基础排版（必须与上方 textarea 完全一致） */
-    font-family: monospace, sans-serif !important;
+    font-family: "Microsoft YaHei" ,"PingFang SC","Noto Sans CJK SC",monospace, sans-serif !important;
     font-size: 16px !important;         /* 必须一致 */
     line-height: 22px !important;       /* 必须一致 */
     font-weight: normal !important;
@@ -85,10 +85,13 @@ html body .vditor-sv-highlight {
     width: 100%;
     height: 100% !important;
     pointer-events: none; 
-    overflow: hidden; 
+    /*overflow: hidden; */
     color: var(--vditor-text-color);
 
     border-right: 1px solid var(--border-color, #d1d5da) !important;
+}
+.vditor-sv-highlight code{
+    font-family: "Microsoft YaHei" ,"PingFang SC","Noto Sans CJK SC",monospace, sans-serif !important;
 }
 
 /* 5. 自定义词法颜色 */
